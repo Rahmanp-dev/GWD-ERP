@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { Users, UserCheck, Clock } from "lucide-react";
+import { Users, UserCheck, Clock, Calendar } from "lucide-react";
 
 export default function HRPage() {
     return (
         <div className="space-y-6">
             <h1 className="text-3xl font-bold text-gray-900">HR Management</h1>
-            <p className="text-gray-600">Employee records, attendance, and recruitment.</p>
+            <p className="text-gray-600">Employee records, attendance, leave, and recruitment.</p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <Link href="/hr/employees" className="group">
                     <div className="p-6 bg-white rounded-lg shadow-sm border border-gray-200 transition-shadow hover:shadow-md">
                         <div className="flex items-center space-x-4">
@@ -30,6 +30,19 @@ export default function HRPage() {
                             <div>
                                 <h3 className="text-xl font-semibold text-gray-800">Attendance</h3>
                                 <p className="text-sm text-gray-500">View attendance logs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </Link>
+                <Link href="/hr/leave" className="group">
+                    <div className="p-6 bg-white rounded-lg shadow-sm border border-gray-200 transition-shadow hover:shadow-md">
+                        <div className="flex items-center space-x-4">
+                            <div className="p-3 bg-green-100 text-green-600 rounded-full group-hover:bg-green-600 group-hover:text-white transition-colors">
+                                <Calendar className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-semibold text-gray-800">Leave</h3>
+                                <p className="text-sm text-gray-500">Request & manage leave.</p>
                             </div>
                         </div>
                     </div>

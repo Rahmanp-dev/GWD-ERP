@@ -44,7 +44,12 @@ export async function GET(req: Request) {
                     pendingDeals: {
                         $sum: {
                             $cond: [
-                                { $nin: ["$status", ["Closed Won", "Closed Lost"]] },
+                                {
+                                    $and: [
+                                        { $ne: ["$status", "Closed Won"] },
+                                        { $ne: ["$status", "Closed Lost"] }
+                                    ]
+                                },
                                 1,
                                 0
                             ]
@@ -53,7 +58,12 @@ export async function GET(req: Request) {
                     pendingValue: {
                         $sum: {
                             $cond: [
-                                { $nin: ["$status", ["Closed Won", "Closed Lost"]] },
+                                {
+                                    $and: [
+                                        { $ne: ["$status", "Closed Won"] },
+                                        { $ne: ["$status", "Closed Lost"] }
+                                    ]
+                                },
                                 "$value",
                                 0
                             ]

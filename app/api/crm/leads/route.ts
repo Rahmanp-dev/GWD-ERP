@@ -20,8 +20,19 @@ export async function GET(req: Request) {
         const status = searchParams.get('status');
         const priority = searchParams.get('priority');
 
+        const userRole = session.user?.role?.toLowerCase() || "";
+        const userId = session.user?.id;
+
         let query: any = {};
-        if (ownerId) query.assignedTo = ownerId;
+
+        // Ownership-based filtering: Salespeople only see their own deals
+        if (userRole === 'salesperson') {
+            query.assignedTo = userId;
+        } else if (ownerId) {
+            // Managers/Admins can filter by specific owner
+            query.assignedTo = ownerId;
+        }
+
         if (status) query.status = status;
         if (priority) query.priority = priority;
 
