@@ -37,14 +37,13 @@ const LeaveRequestSchema = new Schema<ILeaveRequest>({
 }, { timestamps: true });
 
 // Calculate days between start and end date
-LeaveRequestSchema.pre('save', function (next) {
+LeaveRequestSchema.pre('save', function () {
     if (this.startDate && this.endDate) {
         const start = new Date(this.startDate);
         const end = new Date(this.endDate);
         const diffTime = Math.abs(end.getTime() - start.getTime());
         this.days = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
     }
-    next();
 });
 
 const LeaveRequest: Model<ILeaveRequest> = mongoose.models.LeaveRequest || mongoose.model<ILeaveRequest>('LeaveRequest', LeaveRequestSchema);
