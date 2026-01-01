@@ -43,6 +43,10 @@ export default function InvoiceViewPage({ params }: { params: Promise<{ id: stri
         setEmailSent(false);
 
         try {
+            // Use production URL or current origin
+            const baseUrl = process.env.NEXT_PUBLIC_APP_URL ||
+                (typeof window !== 'undefined' ? window.location.origin : '');
+
             const res = await fetch('/api/email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -52,9 +56,16 @@ export default function InvoiceViewPage({ params }: { params: Promise<{ id: stri
                         to: invoice.client.email,
                         invoiceNumber: invoice.invoiceNumber,
                         clientName: invoice.client.name,
+                        clientEmail: invoice.client.email,
                         total: invoice.total,
+                        subtotal: invoice.subtotal,
+                        tax: invoice.tax,
+                        taxRate: invoice.taxRate,
+                        discount: invoice.discount,
                         dueDate: invoice.dueDate,
-                        viewUrl: `${window.location.origin}/finance/invoices/${invoice._id}`
+                        items: invoice.items,
+                        notes: invoice.notes,
+                        viewUrl: baseUrl ? `${baseUrl}/finance/invoices/${invoice._id}` : undefined
                     }
                 })
             });
@@ -125,7 +136,7 @@ export default function InvoiceViewPage({ params }: { params: Promise<{ id: stri
                     </button>
                     <button
                         onClick={handlePrint}
-                        className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                        className="flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
                     >
                         <Printer className="w-4 h-4 mr-2" />
                         Print / Save PDF
@@ -139,15 +150,7 @@ export default function InvoiceViewPage({ params }: { params: Promise<{ id: stri
                 <div className="flex justify-between items-start mb-10">
                     {/* Logo & Company */}
                     <div>
-                        <div className="flex items-center mb-2">
-                            <span className="text-4xl font-bold">
-                                <span className="text-gray-800">[</span>
-                                <span className="text-red-600">G</span>
-                                <span className="text-yellow-500">W</span>
-                                <span className="text-green-600">D</span>
-                                <span className="text-gray-800">]</span>
-                            </span>
-                        </div>
+                        <img src="/gwdlogonobg.png" alt="Get Work Done" className="h-40 w-auto mb-2" />
                         <div className="text-red-600 font-semibold tracking-widest text-sm">
                             GET WORK DONE
                         </div>

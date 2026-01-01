@@ -11,7 +11,7 @@ export default function AdminPage() {
                 <Link href="/admin/users" className="group">
                     <div className="p-6 bg-white rounded-lg shadow-sm border border-gray-200 transition-shadow hover:shadow-md">
                         <div className="flex items-center space-x-4">
-                            <div className="p-3 bg-blue-100 text-blue-600 rounded-full group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                            <div className="p-3 bg-red-100 text-red-600 rounded-full group-hover:bg-red-600 group-hover:text-white transition-colors">
                                 <Users className="w-6 h-6" />
                             </div>
                             <div>

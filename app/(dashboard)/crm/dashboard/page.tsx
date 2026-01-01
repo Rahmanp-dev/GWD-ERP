@@ -89,7 +89,7 @@ export default function SalesDashboard() {
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex items-center justify-between">
                     <div>
                         <div className="text-sm font-medium text-gray-500">Total Pipeline Value</div>
-                        <div className="text-2xl font-bold text-blue-600">
+                        <div className="text-2xl font-bold text-red-600">
                             {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(stats?.totalPipelineValue || 0)}
                         </div>
                     </div>

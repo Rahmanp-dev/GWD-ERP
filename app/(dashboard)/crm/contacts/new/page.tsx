@@ -73,7 +73,7 @@ export default function NewContactPage() {
 
                 <div className="flex justify-end space-x-3 pt-4">
                     <button type="button" onClick={() => router.back()} className="px-4 py-2 text-gray-700 hover:bg-gray-50 border rounded-md">Cancel</button>
-                    <button type="submit" disabled={loading} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50">
+                    <button type="submit" disabled={loading} className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 disabled:opacity-50">
                         {loading ? "Adding..." : "Add Contact"}
                     </button>
                 </div>

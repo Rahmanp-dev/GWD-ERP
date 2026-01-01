@@ -65,7 +65,7 @@ export default function AuditLogsPage() {
     const getActionColor = (action: string) => {
         switch (action) {
             case 'CREATE': return 'bg-green-100 text-green-700';
-            case 'UPDATE': return 'bg-blue-100 text-blue-700';
+            case 'UPDATE': return 'bg-red-100 text-blue-700';
             case 'DELETE': return 'bg-red-100 text-red-700';
             case 'LOGIN': return 'bg-green-100 text-green-700';
             case 'LOGIN_FAILED': return 'bg-red-100 text-red-700';

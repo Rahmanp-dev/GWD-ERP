@@ -72,7 +72,7 @@ export default function ManagerDashboard() {
                 <div className="bg-white p-6 rounded-lg shadow-sm border flex items-center justify-between">
                     <div>
                         <div className="text-sm text-gray-500">Team Pipeline</div>
-                        <div className="text-2xl font-bold text-blue-600">
+                        <div className="text-2xl font-bold text-red-600">
                             {formatCurrency(teamStats?.totalPipeline || 0)}
                         </div>
                     </div>
@@ -133,7 +133,7 @@ export default function ManagerDashboard() {
                                         {person.image ? (
                                             <img className="h-8 w-8 rounded-full mr-3" src={person.image} alt="" />
                                         ) : (
-                                            <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center mr-3 text-blue-600 font-medium">
+                                            <div className="h-8 w-8 rounded-full bg-red-100 flex items-center justify-center mr-3 text-red-600 font-medium">
                                                 {person.name?.[0]}
                                             </div>
                                         )}
@@ -171,7 +171,7 @@ export default function ManagerDashboard() {
                                 <td className="px-6 py-4 whitespace-nowrap text-sm">
                                     <a
                                         href={`/crm/pipeline?ownerId=${person._id}`}
-                                        className="text-blue-600 hover:text-blue-800 flex items-center"
+                                        className="text-red-600 hover:text-blue-800 flex items-center"
                                     >
                                         View Pipeline <ArrowRight className="w-4 h-4 ml-1" />
                                     </a>

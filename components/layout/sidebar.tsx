@@ -110,12 +110,14 @@ export default function Sidebar() {
     const links = roleNavConfigs[role] || defaultNav;
 
     return (
-        <div className="flex flex-col h-screen w-64 bg-gray-900 text-white border-r border-gray-800">
-            <div className="flex items-center justify-center h-16 border-b border-gray-800">
-                <h1 className="text-xl font-bold">GWD ERP</h1>
+        <div className="flex flex-col h-screen w-64 bg-white border-r border-gray-200 shadow-sm">
+            {/* Logo Header */}
+            <div className="flex items-center justify-center h-16 border-b border-gray-100 px-4">
+                <img src="/gwdlogonobg.png" alt="GWD" className="h-35 w-auto" />
             </div>
 
-            <div className="flex flex-col flex-1 p-4 space-y-2 overflow-y-auto">
+            {/* Navigation */}
+            <div className="flex flex-col flex-1 p-4 space-y-1 overflow-y-auto">
                 {links.map((link: any) => {
                     const Icon = link.icon;
                     const isActive = pathname === link.href ||
@@ -126,26 +128,31 @@ export default function Sidebar() {
                             key={link.href + link.label}
                             href={link.href}
                             className={clsx(
-                                "flex items-center px-4 py-2 rounded-md transition-colors",
-                                isActive ? "bg-blue-600 text-white" : "text-gray-400 hover:bg-gray-800 hover:text-white"
+                                "flex items-center px-4 py-2.5 rounded-lg transition-all duration-200",
+                                isActive
+                                    ? "bg-red-600 text-white shadow-md"
+                                    : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                             )}
                         >
                             <Icon className="w-5 h-5 mr-3" />
-                            {link.label}
+                            <span className="font-medium">{link.label}</span>
                         </Link>
                     );
                 })}
             </div>
 
-            <div className="p-4 border-t border-gray-800">
-                <div className="mb-4 text-sm text-gray-400">
-                    <p className="font-semibold text-white">{session?.user?.name}</p>
-                    <p className="text-xs">{session?.user?.email}</p>
-                    <p className="text-xs uppercase mt-1 text-blue-400">{session?.user?.role}</p>
+            {/* User Section */}
+            <div className="p-4 border-t border-gray-100 bg-gray-50">
+                <div className="mb-3 text-sm">
+                    <p className="font-semibold text-gray-900">{session?.user?.name}</p>
+                    <p className="text-xs text-gray-500">{session?.user?.email}</p>
+                    <span className="inline-block mt-1 px-2 py-0.5 text-xs font-medium uppercase bg-red-100 text-red-600 rounded">
+                        {session?.user?.role}
+                    </span>
                 </div>
                 <button
                     onClick={() => signOut()}
-                    className="flex items-center w-full px-4 py-2 text-sm text-gray-400 rounded-md hover:bg-gray-800 hover:text-white"
+                    className="flex items-center w-full px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-200 hover:text-gray-900 transition-colors"
                 >
                     <LogOut className="w-5 h-5 mr-3" />
                     Sign Out
@@ -154,3 +161,5 @@ export default function Sidebar() {
         </div>
     );
 }
+
+

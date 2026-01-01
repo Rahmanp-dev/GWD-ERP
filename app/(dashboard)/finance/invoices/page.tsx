@@ -126,7 +126,7 @@ export default function InvoicesPage() {
                 </div>
                 <button
                     onClick={() => setShowForm(!showForm)}
-                    className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                    className="flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
                 >
                     <Plus className="w-4 h-4 mr-2" />
                     New Invoice
@@ -149,7 +149,7 @@ export default function InvoicesPage() {
                         <Send className="w-8 h-8 text-blue-500 mr-3" />
                         <div>
                             <div className="text-sm text-gray-500">Sent</div>
-                            <div className="text-xl font-bold text-blue-600">{formatCurrency(totals.sent)}</div>
+                            <div className="text-xl font-bold text-red-600">{formatCurrency(totals.sent)}</div>
                         </div>
                     </div>
                 </div>
@@ -231,7 +231,7 @@ export default function InvoicesPage() {
                                     />
                                 </div>
                             ))}
-                            <button type="button" onClick={addItem} className="text-sm text-blue-600 hover:underline">
+                            <button type="button" onClick={addItem} className="text-sm text-red-600 hover:underline">
                                 + Add Item
                             </button>
                         </div>
@@ -269,7 +269,7 @@ export default function InvoicesPage() {
 
                         <div className="flex justify-end space-x-3">
                             <button type="button" onClick={() => setShowForm(false)} className="px-4 py-2 border rounded-lg">Cancel</button>
-                            <button type="submit" disabled={submitting} className="px-4 py-2 bg-blue-600 text-white rounded-lg disabled:opacity-50">
+                            <button type="submit" disabled={submitting} className="px-4 py-2 bg-red-600 text-white rounded-lg disabled:opacity-50">
                                 {submitting ? 'Creating...' : 'Create Invoice'}
                             </button>
                         </div>
@@ -293,13 +293,13 @@ export default function InvoicesPage() {
                     <tbody className="bg-white divide-y divide-gray-200">
                         {invoices.map((inv) => (
                             <tr key={inv._id} className="hover:bg-gray-50">
-                                <td className="px-6 py-4 text-sm font-medium text-blue-600">{inv.invoiceNumber}</td>
+                                <td className="px-6 py-4 text-sm font-medium text-red-600">{inv.invoiceNumber}</td>
                                 <td className="px-6 py-4 text-sm text-gray-900">{inv.client?.name}</td>
                                 <td className="px-6 py-4 text-sm font-semibold text-gray-900">{formatCurrency(inv.total)}</td>
                                 <td className="px-6 py-4 text-sm text-gray-500">{new Date(inv.dueDate).toLocaleDateString()}</td>
                                 <td className="px-6 py-4">
                                     <span className={`px-2 py-1 text-xs rounded-full ${inv.status === 'Paid' ? 'bg-green-100 text-green-700' :
-                                        inv.status === 'Sent' ? 'bg-blue-100 text-blue-700' :
+                                        inv.status === 'Sent' ? 'bg-red-100 text-blue-700' :
                                             inv.status === 'Overdue' ? 'bg-red-100 text-red-700' :
                                                 'bg-gray-100 text-gray-700'
                                         }`}>{inv.status}</span>
@@ -310,7 +310,7 @@ export default function InvoicesPage() {
                                             <Eye className="w-4 h-4" />
                                         </a>
                                         {inv.status === 'Draft' && (
-                                            <button onClick={() => handleStatusChange(inv._id, 'Sent')} className="text-blue-600 hover:text-blue-800" title="Send">
+                                            <button onClick={() => handleStatusChange(inv._id, 'Sent')} className="text-red-600 hover:text-blue-800" title="Send">
                                                 <Send className="w-4 h-4" />
                                             </button>
                                         )}

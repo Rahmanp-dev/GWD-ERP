@@ -50,7 +50,7 @@ export default function OpsDashboard() {
                     <div className="flex items-center justify-between">
                         <div>
                             <div className="text-sm text-gray-500">Active Workflows</div>
-                            <div className="text-2xl font-bold text-blue-600">{activeProjects.length}</div>
+                            <div className="text-2xl font-bold text-red-600">{activeProjects.length}</div>
                         </div>
                         <Activity className="w-8 h-8 text-blue-400" />
                     </div>
@@ -93,7 +93,7 @@ export default function OpsDashboard() {
                 <div className="bg-white rounded-xl shadow-sm border p-6">
                     <div className="flex items-center justify-between mb-4">
                         <h3 className="font-semibold text-gray-800">Active Workflows</h3>
-                        <a href="/projects" className="text-sm text-blue-600 hover:underline flex items-center">
+                        <a href="/projects" className="text-sm text-red-600 hover:underline flex items-center">
                             View All <ArrowRight className="w-4 h-4 ml-1" />
                         </a>
                     </div>
@@ -121,8 +121,8 @@ export default function OpsDashboard() {
                 <div className="bg-white rounded-xl shadow-sm border p-6">
                     <h3 className="font-semibold text-gray-800 mb-4">Operations Actions</h3>
                     <div className="grid grid-cols-2 gap-4">
-                        <a href="/projects" className="flex flex-col items-center justify-center p-6 bg-blue-50 rounded-xl hover:bg-blue-100 transition">
-                            <Activity className="w-8 h-8 text-blue-600 mb-2" />
+                        <a href="/projects" className="flex flex-col items-center justify-center p-6 bg-blue-50 rounded-xl hover:bg-red-100 transition">
+                            <Activity className="w-8 h-8 text-red-600 mb-2" />
                             <span className="font-medium text-gray-800">Workflows</span>
                         </a>
                         <a href="/hr/employees" className="flex flex-col items-center justify-center p-6 bg-green-50 rounded-xl hover:bg-green-100 transition">

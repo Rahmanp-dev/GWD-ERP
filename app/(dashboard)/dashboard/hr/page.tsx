@@ -105,7 +105,7 @@ export default function HRManagerDashboard() {
                 <div className="bg-white rounded-xl shadow-sm border p-6">
                     <div className="flex items-center justify-between mb-4">
                         <h3 className="font-semibold text-gray-800">Recent Candidates</h3>
-                        <a href="/hr/recruitment" className="text-sm text-blue-600 hover:underline flex items-center">
+                        <a href="/hr/recruitment" className="text-sm text-red-600 hover:underline flex items-center">
                             View All <ArrowRight className="w-4 h-4 ml-1" />
                         </a>
                     </div>
@@ -117,7 +117,7 @@ export default function HRManagerDashboard() {
                                     <div className="text-sm text-gray-500">{candidate.position}</div>
                                 </div>
                                 <span className={`text-xs px-2 py-1 rounded ${candidate.stage === 'Hired' ? 'bg-green-100 text-green-700' :
-                                        candidate.stage === 'Interview' ? 'bg-blue-100 text-blue-700' :
+                                        candidate.stage === 'Interview' ? 'bg-red-100 text-blue-700' :
                                             candidate.stage === 'Rejected' ? 'bg-red-100 text-red-700' :
                                                 'bg-gray-100 text-gray-700'
                                     }`}>{candidate.stage}</span>
@@ -125,7 +125,7 @@ export default function HRManagerDashboard() {
                         ))}
                         {(!data?.candidates || data.candidates.length === 0) && (
                             <div className="text-center py-8 text-gray-500">
-                                No candidates yet. <a href="/hr/recruitment/new" className="text-blue-600 hover:underline">Add one!</a>
+                                No candidates yet. <a href="/hr/recruitment/new" className="text-red-600 hover:underline">Add one!</a>
                             </div>
                         )}
                     </div>
@@ -135,8 +135,8 @@ export default function HRManagerDashboard() {
                 <div className="bg-white rounded-xl shadow-sm border p-6">
                     <h3 className="font-semibold text-gray-800 mb-4">HR Actions</h3>
                     <div className="grid grid-cols-2 gap-4">
-                        <a href="/hr/employees" className="flex flex-col items-center justify-center p-6 bg-blue-50 rounded-xl hover:bg-blue-100 transition">
-                            <Users className="w-8 h-8 text-blue-600 mb-2" />
+                        <a href="/hr/employees" className="flex flex-col items-center justify-center p-6 bg-blue-50 rounded-xl hover:bg-red-100 transition">
+                            <Users className="w-8 h-8 text-red-600 mb-2" />
                             <span className="font-medium text-gray-800">Employees</span>
                         </a>
                         <a href="/hr/attendance" className="flex flex-col items-center justify-center p-6 bg-green-50 rounded-xl hover:bg-green-100 transition">

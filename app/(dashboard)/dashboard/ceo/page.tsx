@@ -117,7 +117,7 @@ export default function CEODashboard() {
                 <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border p-6">
                     <div className="flex items-center justify-between mb-4">
                         <h3 className="font-semibold text-gray-800">Top Deals in Pipeline</h3>
-                        <a href="/crm/pipeline" className="text-sm text-blue-600 hover:underline flex items-center">
+                        <a href="/crm/pipeline" className="text-sm text-red-600 hover:underline flex items-center">
                             View All <ArrowUpRight className="w-4 h-4 ml-1" />
                         </a>
                     </div>
@@ -125,7 +125,7 @@ export default function CEODashboard() {
                         {data?.sales?.recentDeals?.slice(0, 5).map((deal: any, i: number) => (
                             <div key={deal._id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                                 <div className="flex items-center">
-                                    <span className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-medium">{i + 1}</span>
+                                    <span className="w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-sm font-medium">{i + 1}</span>
                                     <div className="ml-3">
                                         <div className="font-medium text-gray-900">{deal.title}</div>
                                         <div className="text-xs text-gray-500">{deal.accountName || 'No Account'}</div>
@@ -135,7 +135,7 @@ export default function CEODashboard() {
                                     <div className="font-semibold text-gray-900">{formatCurrency(deal.value)}</div>
                                     <span className={`text-xs px-2 py-1 rounded ${deal.status === 'Closed Won' ? 'bg-green-100 text-green-700' :
                                         deal.status === 'Negotiation' ? 'bg-purple-100 text-purple-700' :
-                                            'bg-blue-100 text-blue-700'
+                                            'bg-red-100 text-blue-700'
                                         }`}>{deal.status}</span>
                                 </div>
                             </div>

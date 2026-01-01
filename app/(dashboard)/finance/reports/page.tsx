@@ -134,7 +134,7 @@ export default function ReportsBuilder() {
         <div className="p-6 space-y-6">
             <div className="flex items-center justify-between">
                 <h1 className="text-2xl font-bold text-gray-900">Report Builder</h1>
-                <button className="flex items-center px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                <button className="flex items-center px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
                     <Download className="w-4 h-4 mr-2" />
                     Export
                 </button>
@@ -172,19 +172,19 @@ export default function ReportsBuilder() {
                 <div className="flex items-center space-x-2 ml-auto">
                     <button
                         onClick={() => setChartType("bar")}
-                        className={`p-2 rounded ${chartType === 'bar' ? 'bg-blue-100 text-blue-600' : 'text-gray-400 hover:bg-gray-100'}`}
+                        className={`p-2 rounded ${chartType === 'bar' ? 'bg-red-100 text-red-600' : 'text-gray-400 hover:bg-gray-100'}`}
                     >
                         <BarChart3 className="w-5 h-5" />
                     </button>
                     <button
                         onClick={() => setChartType("pie")}
-                        className={`p-2 rounded ${chartType === 'pie' ? 'bg-blue-100 text-blue-600' : 'text-gray-400 hover:bg-gray-100'}`}
+                        className={`p-2 rounded ${chartType === 'pie' ? 'bg-red-100 text-red-600' : 'text-gray-400 hover:bg-gray-100'}`}
                     >
                         <PieChart className="w-5 h-5" />
                     </button>
                     <button
                         onClick={() => setChartType("line")}
-                        className={`p-2 rounded ${chartType === 'line' ? 'bg-blue-100 text-blue-600' : 'text-gray-400 hover:bg-gray-100'}`}
+                        className={`p-2 rounded ${chartType === 'line' ? 'bg-red-100 text-red-600' : 'text-gray-400 hover:bg-gray-100'}`}
                     >
                         <LineChart className="w-5 h-5" />
                     </button>

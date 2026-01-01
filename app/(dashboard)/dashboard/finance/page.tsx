@@ -72,7 +72,7 @@ export default function CFODashboard() {
                     <div className="flex items-center justify-between">
                         <div>
                             <div className="text-sm text-gray-500">Pipeline Value</div>
-                            <div className="text-2xl font-bold text-blue-600">{formatCurrency(data?.sales?.totalPipelineValue)}</div>
+                            <div className="text-2xl font-bold text-red-600">{formatCurrency(data?.sales?.totalPipelineValue)}</div>
                         </div>
                         <TrendingUp className="w-8 h-8 text-blue-400" />
                     </div>
@@ -106,7 +106,7 @@ export default function CFODashboard() {
                 <div className="bg-white rounded-xl shadow-sm border p-6">
                     <div className="flex items-center justify-between mb-4">
                         <h3 className="font-semibold text-gray-800">Commission Status</h3>
-                        <a href="/finance/commissions" className="text-sm text-blue-600 hover:underline flex items-center">
+                        <a href="/finance/commissions" className="text-sm text-red-600 hover:underline flex items-center">
                             Manage <ArrowRight className="w-4 h-4 ml-1" />
                         </a>
                     </div>
@@ -120,10 +120,10 @@ export default function CFODashboard() {
                         </div>
                         <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
                             <div className="flex items-center">
-                                <CreditCard className="w-5 h-5 text-blue-600 mr-3" />
+                                <CreditCard className="w-5 h-5 text-red-600 mr-3" />
                                 <span className="font-medium">Approved (To Pay)</span>
                             </div>
-                            <span className="text-lg font-bold text-blue-600">{formatCurrency(approvedCommissions)}</span>
+                            <span className="text-lg font-bold text-red-600">{formatCurrency(approvedCommissions)}</span>
                         </div>
                         <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg">
                             <div className="flex items-center">
@@ -139,8 +139,8 @@ export default function CFODashboard() {
                 <div className="bg-white rounded-xl shadow-sm border p-6">
                     <h3 className="font-semibold text-gray-800 mb-4">Financial Actions</h3>
                     <div className="grid grid-cols-2 gap-4">
-                        <a href="/finance/commissions" className="flex flex-col items-center justify-center p-6 bg-blue-50 rounded-xl hover:bg-blue-100 transition">
-                            <DollarSign className="w-8 h-8 text-blue-600 mb-2" />
+                        <a href="/finance/commissions" className="flex flex-col items-center justify-center p-6 bg-blue-50 rounded-xl hover:bg-red-100 transition">
+                            <DollarSign className="w-8 h-8 text-red-600 mb-2" />
                             <span className="font-medium text-gray-800">Commissions</span>
                         </a>
                         <a href="/finance/reports" className="flex flex-col items-center justify-center p-6 bg-purple-50 rounded-xl hover:bg-purple-100 transition">

@@ -12,7 +12,7 @@ export default function FinancePage() {
                 <Link href="/finance/invoices" className="group">
                     <div className="p-6 bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition">
                         <div className="flex items-center space-x-4">
-                            <div className="p-3 bg-blue-100 text-blue-600 rounded-full group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                            <div className="p-3 bg-red-100 text-red-600 rounded-full group-hover:bg-red-600 group-hover:text-white transition-colors">
                                 <FileText className="w-6 h-6" />
                             </div>
                             <div>
@@ -73,7 +73,7 @@ export default function FinancePage() {
                     <div className="space-y-2">
                         <Link href="/finance/new?type=Revenue" className="block w-full text-center px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Record Revenue</Link>
                         <Link href="/finance/new?type=Expense" className="block w-full text-center px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Record Expense</Link>
-                        <Link href="/finance/invoices" className="block w-full text-center px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Create Invoice</Link>
+                        <Link href="/finance/invoices" className="block w-full text-center px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Create Invoice</Link>
                     </div>
                 </div>
             </div>

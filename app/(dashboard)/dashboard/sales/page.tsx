@@ -63,7 +63,7 @@ export default function SalesManagerDashboard() {
                     <div className="flex items-center justify-between">
                         <div>
                             <div className="text-sm text-gray-500">Team Pipeline</div>
-                            <div className="text-2xl font-bold text-blue-600">{formatCurrency(teamTotals.totalPipeline)}</div>
+                            <div className="text-2xl font-bold text-red-600">{formatCurrency(teamTotals.totalPipeline)}</div>
                         </div>
                         <TrendingUp className="w-8 h-8 text-blue-400" />
                     </div>
@@ -104,7 +104,7 @@ export default function SalesManagerDashboard() {
                         <Award className="w-5 h-5 text-yellow-500 mr-2" />
                         <h3 className="font-semibold text-gray-800">Team Leaderboard</h3>
                     </div>
-                    <a href="/crm/manager" className="text-sm text-blue-600 hover:underline flex items-center">
+                    <a href="/crm/manager" className="text-sm text-red-600 hover:underline flex items-center">
                         Full View <ArrowRight className="w-4 h-4 ml-1" />
                     </a>
                 </div>
@@ -127,7 +127,7 @@ export default function SalesManagerDashboard() {
                                             <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mr-2 ${i === 0 ? 'bg-yellow-100 text-yellow-700' :
                                                     i === 1 ? 'bg-gray-100 text-gray-700' :
                                                         i === 2 ? 'bg-orange-100 text-orange-700' :
-                                                            'bg-blue-100 text-blue-700'
+                                                            'bg-red-100 text-blue-700'
                                                 }`}>{i + 1}</span>
                                             <span className="font-medium">{person.name}</span>
                                         </div>
@@ -143,7 +143,7 @@ export default function SalesManagerDashboard() {
                                         </div>
                                     </td>
                                     <td className="py-3">
-                                        <a href={`/crm/pipeline?ownerId=${person._id}`} className="text-blue-600 text-sm hover:underline">View</a>
+                                        <a href={`/crm/pipeline?ownerId=${person._id}`} className="text-red-600 text-sm hover:underline">View</a>
                                     </td>
                                 </tr>
                             ))}
@@ -166,7 +166,7 @@ export default function SalesManagerDashboard() {
                                     <div className="font-medium">{deal.title}</div>
                                     <div className="text-sm text-gray-500">Stage: {deal.status}</div>
                                 </div>
-                                <a href="/crm/pipeline" className="text-blue-600 text-sm hover:underline">Review</a>
+                                <a href="/crm/pipeline" className="text-red-600 text-sm hover:underline">Review</a>
                             </div>
                         ))}
                     </div>

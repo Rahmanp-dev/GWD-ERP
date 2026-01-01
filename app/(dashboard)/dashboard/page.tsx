@@ -35,7 +35,7 @@ export default async function DashboardPage() {
             <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-200">
                 <h1 className="text-3xl font-bold text-gray-900">Welcome, {session?.user?.name || "User"}</h1>
                 <p className="mt-2 text-gray-600">
-                    Role: <span className="font-semibold text-blue-600">{session?.user?.role || "User"}</span>
+                    Role: <span className="font-semibold text-red-600">{session?.user?.role || "User"}</span>
                 </p>
             </div>
             <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">

@@ -55,7 +55,7 @@ export default function PMDashboard() {
                     <div className="flex items-center justify-between">
                         <div>
                             <div className="text-sm text-gray-500">Active Projects</div>
-                            <div className="text-2xl font-bold text-blue-600">{activeProjects.length}</div>
+                            <div className="text-2xl font-bold text-red-600">{activeProjects.length}</div>
                         </div>
                         <Briefcase className="w-8 h-8 text-blue-400" />
                     </div>
@@ -96,7 +96,7 @@ export default function PMDashboard() {
             <div className="bg-white rounded-xl shadow-sm border p-6">
                 <div className="flex items-center justify-between mb-4">
                     <h3 className="font-semibold text-gray-800">My Projects</h3>
-                    <a href="/projects" className="text-sm text-blue-600 hover:underline flex items-center">
+                    <a href="/projects" className="text-sm text-red-600 hover:underline flex items-center">
                         All Projects <ArrowRight className="w-4 h-4 ml-1" />
                     </a>
                 </div>
@@ -116,7 +116,7 @@ export default function PMDashboard() {
                             </div>
                             <div className="text-right">
                                 <div className="text-sm font-medium text-gray-900">{formatCurrency(project.budget?.estimated)}</div>
-                                <span className={`text-xs px-2 py-1 rounded ${project.status === 'Active' ? 'bg-blue-100 text-blue-700' :
+                                <span className={`text-xs px-2 py-1 rounded ${project.status === 'Active' ? 'bg-red-100 text-blue-700' :
                                         project.status === 'Completed' ? 'bg-green-100 text-green-700' :
                                             'bg-gray-100 text-gray-700'
                                     }`}>{project.status}</span>
@@ -125,7 +125,7 @@ export default function PMDashboard() {
                     ))}
                     {projects.length === 0 && (
                         <div className="text-center py-8 text-gray-500">
-                            No projects yet. <a href="/projects/new" className="text-blue-600 hover:underline">Create one!</a>
+                            No projects yet. <a href="/projects/new" className="text-red-600 hover:underline">Create one!</a>
                         </div>
                     )}
                 </div>
@@ -134,7 +134,7 @@ export default function PMDashboard() {
             {/* Quick Actions */}
             <div className="grid grid-cols-4 gap-4">
                 <a href="/projects/new" className="flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow-sm border hover:bg-gray-50 transition">
-                    <Briefcase className="w-8 h-8 text-blue-600 mb-2" />
+                    <Briefcase className="w-8 h-8 text-red-600 mb-2" />
                     <span className="font-medium text-gray-800">New Project</span>
                 </a>
                 <a href="/projects" className="flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow-sm border hover:bg-gray-50 transition">

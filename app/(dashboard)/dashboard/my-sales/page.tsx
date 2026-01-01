@@ -67,7 +67,7 @@ export default function SalespersonDashboard() {
                 </div>
                 <div className="text-right">
                     <div className="text-sm text-gray-500">{new Date().toLocaleDateString()}</div>
-                    <div className="text-sm font-medium text-blue-600">Good {new Date().getHours() < 12 ? 'morning' : 'afternoon'}, {session?.user?.name?.split(' ')[0]}!</div>
+                    <div className="text-sm font-medium text-red-600">Good {new Date().getHours() < 12 ? 'morning' : 'afternoon'}, {session?.user?.name?.split(' ')[0]}!</div>
                 </div>
             </div>
 
@@ -97,8 +97,8 @@ export default function SalespersonDashboard() {
                             <div className="text-sm text-gray-500">My Pipeline</div>
                             <div className="text-2xl font-bold text-gray-900">{formatCurrency(totalPipeline)}</div>
                         </div>
-                        <div className="p-3 bg-blue-100 rounded-lg">
-                            <TrendingUp className="w-6 h-6 text-blue-600" />
+                        <div className="p-3 bg-red-100 rounded-lg">
+                            <TrendingUp className="w-6 h-6 text-red-600" />
                         </div>
                     </div>
                     <div className="text-sm text-gray-500 mt-2">{openDeals.length} open deals</div>
@@ -150,7 +150,7 @@ export default function SalespersonDashboard() {
                 <div className="bg-white rounded-xl shadow-sm border p-6">
                     <div className="flex items-center justify-between mb-4">
                         <h3 className="font-semibold text-gray-800">My Open Deals</h3>
-                        <a href="/crm/pipeline" className="text-sm text-blue-600 hover:underline flex items-center">
+                        <a href="/crm/pipeline" className="text-sm text-red-600 hover:underline flex items-center">
                             View All <ArrowRight className="w-4 h-4 ml-1" />
                         </a>
                     </div>
@@ -164,7 +164,7 @@ export default function SalespersonDashboard() {
                                 <div className="text-right">
                                     <div className="font-semibold text-gray-900">{formatCurrency(deal.value)}</div>
                                     <span className={`text-xs px-2 py-1 rounded ${deal.status === 'Negotiation' ? 'bg-purple-100 text-purple-700' :
-                                            deal.status === 'Proposal' ? 'bg-blue-100 text-blue-700' :
+                                            deal.status === 'Proposal' ? 'bg-red-100 text-blue-700' :
                                                 'bg-gray-100 text-gray-700'
                                         }`}>{deal.status}</span>
                                 </div>
@@ -172,7 +172,7 @@ export default function SalespersonDashboard() {
                         ))}
                         {openDeals.length === 0 && (
                             <div className="text-center py-8 text-gray-500">
-                                No open deals. <a href="/crm/pipeline/new" className="text-blue-600 hover:underline">Add one!</a>
+                                No open deals. <a href="/crm/pipeline/new" className="text-red-600 hover:underline">Add one!</a>
                             </div>
                         )}
                     </div>
@@ -182,8 +182,8 @@ export default function SalespersonDashboard() {
                 <div className="bg-white rounded-xl shadow-sm border p-6">
                     <h3 className="font-semibold text-gray-800 mb-4">Quick Actions</h3>
                     <div className="grid grid-cols-2 gap-4">
-                        <a href="/crm/pipeline/new" className="flex flex-col items-center justify-center p-6 bg-blue-50 rounded-xl hover:bg-blue-100 transition">
-                            <TrendingUp className="w-8 h-8 text-blue-600 mb-2" />
+                        <a href="/crm/pipeline/new" className="flex flex-col items-center justify-center p-6 bg-blue-50 rounded-xl hover:bg-red-100 transition">
+                            <TrendingUp className="w-8 h-8 text-red-600 mb-2" />
                             <span className="font-medium text-gray-800">New Deal</span>
                         </a>
                         <a href="/crm/contacts/new" className="flex flex-col items-center justify-center p-6 bg-green-50 rounded-xl hover:bg-green-100 transition">

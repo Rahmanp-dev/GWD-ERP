@@ -183,7 +183,7 @@ export default function CalendarPage() {
                 </div>
                 <button
                     onClick={() => setShowForm(true)}
-                    className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                    className="flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
                 >
                     <Plus className="w-4 h-4 mr-2" />
                     New Event
@@ -232,7 +232,7 @@ export default function CalendarPage() {
                                     ${isToday(date) ? 'ring-2 ring-blue-500' : ''}
                                 `}
                             >
-                                <div className={`text-sm font-medium mb-1 ${isToday(date) ? 'text-blue-600' : ''}`}>
+                                <div className={`text-sm font-medium mb-1 ${isToday(date) ? 'text-red-600' : ''}`}>
                                     {date.getDate()}
                                 </div>
                                 <div className="space-y-1">
@@ -388,7 +388,7 @@ export default function CalendarPage() {
                                 </button>
                                 <button
                                     type="submit"
-                                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                                    className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
                                 >
                                     Create Event
                                 </button>
