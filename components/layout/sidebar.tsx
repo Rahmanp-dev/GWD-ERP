@@ -17,7 +17,8 @@ import {
     Wallet,
     FileText,
     Activity,
-    Calendar
+    Calendar,
+    Shield
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 
@@ -61,14 +62,18 @@ const roleNavConfigs: Record<string, any[]> = {
         { href: "/finance/reports", label: "Reports", icon: FileText },
     ],
     ops: [
-        { href: "/dashboard", label: "Ops Dashboard", icon: LayoutDashboard },
-        { href: "/projects", label: "Workflows", icon: Activity },
-        { href: "/hr/employees", label: "Resources", icon: Users },
+        { href: "/operations", label: "Ops Dashboard", icon: LayoutDashboard },
+        { href: "/operations/projects", label: "Projects & Health", icon: Briefcase },
+        { href: "/operations/performance", label: "PM Performance", icon: Activity },
+        { href: "/operations/resources", label: "Resources", icon: Users },
+        { href: "/operations/governance", label: "Governance", icon: Shield },
     ],
     "operations manager": [
-        { href: "/dashboard", label: "Ops Dashboard", icon: LayoutDashboard },
-        { href: "/projects", label: "Workflows", icon: Activity },
-        { href: "/hr/employees", label: "Resources", icon: Users },
+        { href: "/operations", label: "Ops Dashboard", icon: LayoutDashboard },
+        { href: "/operations/projects", label: "Projects & Health", icon: Briefcase },
+        { href: "/operations/performance", label: "PM Performance", icon: Activity },
+        { href: "/operations/resources", label: "Resources", icon: Users },
+        { href: "/operations/governance", label: "Governance", icon: Shield },
     ],
     cfo: [
         { href: "/dashboard", label: "Finance Dashboard", icon: LayoutDashboard },
@@ -78,12 +83,11 @@ const roleNavConfigs: Record<string, any[]> = {
         { href: "/admin/audit-logs", label: "Audit Logs", icon: FileText },
     ],
     "hr manager": [
-        { href: "/dashboard", label: "HR Dashboard", icon: LayoutDashboard },
-        { href: "/hr", label: "HR Hub", icon: UserCheck },
+        { href: "/hr/dashboard", label: "HR Dashboard", icon: LayoutDashboard },
         { href: "/hr/employees", label: "Employees", icon: Users },
-        { href: "/hr/attendance", label: "Attendance", icon: Activity },
-        { href: "/hr/leave", label: "Leave", icon: Target },
         { href: "/hr/recruitment", label: "Recruitment", icon: Target },
+        { href: "/hr/attendance", label: "Attendance", icon: Activity },
+        { href: "/hr/performance", label: "Performance", icon: UserCheck },
     ],
     admin: [
         { href: "/dashboard", label: "Admin Dashboard", icon: LayoutDashboard },

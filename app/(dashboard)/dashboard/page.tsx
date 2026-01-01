@@ -14,17 +14,17 @@ export default async function DashboardPage() {
     if (['ceo'].includes(role)) {
         redirect('/dashboard/ceo');
     } else if (['cmo', 'sales manager'].includes(role)) {
-        redirect('/dashboard/sales');
+        redirect('/sales');
     } else if (['salesperson'].includes(role)) {
         redirect('/dashboard/my-sales');
     } else if (['project manager', 'pm'].includes(role)) {
-        redirect('/dashboard/projects');
+        redirect('/projects/dashboard');
     } else if (['cfo'].includes(role)) {
         redirect('/dashboard/finance');
     } else if (['hr manager'].includes(role)) {
-        redirect('/dashboard/hr');
+        redirect('/hr/dashboard');
     } else if (['ops', 'operations manager'].includes(role)) {
-        redirect('/dashboard/ops');
+        redirect('/operations');
     } else if (['admin'].includes(role)) {
         redirect('/dashboard/admin');
     }

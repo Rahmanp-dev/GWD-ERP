@@ -65,7 +65,7 @@ export default function InvoiceViewPage({ params }: { params: Promise<{ id: stri
                         dueDate: invoice.dueDate,
                         items: invoice.items,
                         notes: invoice.notes,
-                        viewUrl: baseUrl ? `${baseUrl}/finance/invoices/${invoice._id}` : undefined
+                        viewUrl: baseUrl ? `${baseUrl}/view/invoice/${invoice._id}` : undefined
                     }
                 })
             });
@@ -257,10 +257,8 @@ export default function InvoiceViewPage({ params }: { params: Promise<{ id: stri
 
                 {/* Footer */}
                 <div className="mt-12 pt-6 border-t text-center">
-                    <div className="text-2xl font-light tracking-[0.4em]">
-                        <span className="text-red-600">GET</span>
-                        <span className="text-yellow-500 mx-2">WORK</span>
-                        <span className="text-green-600">DONE</span>
+                    <div className="text-sm text-gray-500">
+                        GET WORK DONE
                     </div>
                 </div>
             </div>

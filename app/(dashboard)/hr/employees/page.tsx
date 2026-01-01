@@ -1,54 +1,63 @@
-import { auth } from "@/auth";
-import Link from "next/link";
+import dbConnect from '@/lib/db';
+import User from '@/lib/models/User';
+import { Mail, Phone, MoreHorizontal, AlertTriangle } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
-export default async function EmployeesPage() {
-    const session = await auth();
-    let employees = [];
+async function getEmployees(filter?: string) {
+    await dbConnect();
 
-    try {
-        const { default: dbConnect } = await import("@/lib/db");
-        await dbConnect();
-        const { default: Employee } = await import("@/lib/models/Employee");
-        employees = await Employee.find({}).sort({ name: 1 });
-    } catch (e) {
-        console.error("Failed to fetch employees:", e);
+    let query: any = { role: { $nin: ['User', 'Candidate'] } };
+
+    if (filter === 'risk') {
+        query.attritionRisk = 'High';
+    } else if (filter === 'new') {
+        const thirtyDaysAgo = new Date();
+        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+        query.joinDate = { $gt: thirtyDaysAgo };
     }
+
+    const employees = await User.find(query).sort({ name: 1 }).lean();
+    return JSON.parse(JSON.stringify(employees));
+}
+
+export default async function EmployeesPage({ searchParams }: { searchParams: Promise<{ filter?: string }> }) {
+    const params = await searchParams;
+    const employees = await getEmployees(params.filter);
 
     return (
         <div className="space-y-6">
-            <div className="flex justify-between items-center">
-                <h1 className="text-2xl font-bold text-gray-900">Employees</h1>
-                <Link href="/hr/employees/new" className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Add Employee</Link>
+            <div className="bg-white p-6 rounded-lg border shadow-sm flex justify-between items-center">
+                <div>
+                    <h1 className="text-2xl font-bold text-gray-900">Employee Directory</h1>
+                    <p className="text-gray-500">{employees.length} Active Employees</p>
+                </div>
             </div>
 
-            <div className="bg-white shadow-sm rounded-lg overflow-hidden border border-gray-200">
-                <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
-                        <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Position</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
-                        {employees.map((e) => (
-                            <tr key={e._id.toString()}>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{e.name}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{e.department}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{e.position}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{e.status}</td>
-                            </tr>
-                        ))}
-                        {employees.length === 0 && (
-                            <tr>
-                                <td colSpan={4} className="px-6 py-4 text-center text-gray-500">No employees found.</td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {employees.map((emp: any) => (
+                    <div key={emp._id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+                        <div className="p-6 text-center">
+                            <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center text-gray-500 font-bold text-2xl">
+                                {emp.image ? <img src={emp.image} alt={emp.name} className="w-full h-full rounded-full object-cover" /> : emp.name?.charAt(0)}
+                            </div>
+                            <h3 className="font-bold text-lg text-gray-900 truncate">{emp.name}</h3>
+                            <p className="text-sm text-blue-600 mb-1">{emp.jobTitle || emp.role}</p>
+                            <p className="text-xs text-gray-500 uppercase">{emp.department || 'General'}</p>
+
+                            {emp.attritionRisk === 'High' && (
+                                <div className="mt-3 inline-flex items-center px-2 py-1 bg-red-50 text-red-700 text-xs font-bold rounded">
+                                    <AlertTriangle className="w-3 h-3 mr-1" /> Retention Risk
+                                </div>
+                            )}
+                        </div>
+                        <div className="bg-gray-50 p-4 flex justify-around border-t border-gray-100">
+                            <button className="text-gray-500 hover:text-gray-700"><Mail className="w-5 h-5" /></button>
+                            <button className="text-gray-500 hover:text-gray-700"><Phone className="w-5 h-5" /></button>
+                            <button className="text-gray-500 hover:text-gray-700"><MoreHorizontal className="w-5 h-5" /></button>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );

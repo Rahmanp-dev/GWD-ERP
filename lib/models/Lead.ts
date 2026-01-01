@@ -29,6 +29,36 @@ const LeadSchema = new Schema({
         default: 'Other'
     },
 
+    // Sales Intelligence
+    probability: { type: Number, min: 0, max: 100, default: 0 }, // Win probability %
+    riskScore: { type: Number, default: 0 }, // Calculated risk 0-100
+    riskFactors: [{ type: String }], // Reasons for risk ('Stalled', 'No Decision Maker', 'Discount High')
+
+    // Governance & Control
+    stageLocked: { type: Boolean, default: false }, // Prevent movement without override
+    validationErrors: [{ type: String }], // Why it's stuck or marked invalid for stage move
+
+    // Operations Handover
+    handoverStatus: {
+        type: String,
+        enum: ['Pending', 'In Progress', 'Completed', 'Not Applicable'],
+        default: 'Not Applicable'
+    },
+    handoverChecklist: [{
+        item: String,
+        completed: { type: Boolean, default: false },
+        completedBy: { type: Schema.Types.ObjectId, ref: 'User' },
+        completedAt: Date
+    }],
+
+    // Activity Summary (Auto-aggregated)
+    activityStats: {
+        calls: { type: Number, default: 0 },
+        emails: { type: Number, default: 0 },
+        meetings: { type: Number, default: 0 },
+        lastActivityDays: { type: Number, default: 0 }, // Days since last touch
+    },
+
     assignedTo: { type: Schema.Types.ObjectId, ref: 'User' },
 
     // Embedded Data
