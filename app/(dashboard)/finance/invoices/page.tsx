@@ -20,11 +20,14 @@ export default function InvoicesPage() {
     const [formData, setFormData] = useState({
         clientName: '',
         clientEmail: '',
+        clientAddress: '',
         items: [{ description: '', quantity: 1, unitPrice: 0 }],
         taxRate: 10,
         discount: 0,
         dueDate: '',
-        notes: ''
+        notes: '',
+        paymentTerms: 'Due on Receipt',
+        termsAndConditions: ''
     });
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState('');
@@ -56,12 +59,14 @@ export default function InvoicesPage() {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    client: { name: formData.clientName, email: formData.clientEmail },
+                    client: { name: formData.clientName, email: formData.clientEmail, address: formData.clientAddress },
                     items: formData.items.filter(i => i.description && i.unitPrice > 0),
                     taxRate: formData.taxRate,
                     discount: formData.discount,
                     dueDate: formData.dueDate,
-                    notes: formData.notes
+                    notes: formData.notes,
+                    paymentTerms: formData.paymentTerms,
+                    termsAndConditions: formData.termsAndConditions
                 })
             });
 
@@ -72,9 +77,10 @@ export default function InvoicesPage() {
 
             setShowForm(false);
             setFormData({
-                clientName: '', clientEmail: '',
+                clientName: '', clientEmail: '', clientAddress: '',
                 items: [{ description: '', quantity: 1, unitPrice: 0 }],
-                taxRate: 10, discount: 0, dueDate: '', notes: ''
+                taxRate: 10, discount: 0, dueDate: '', notes: '',
+                paymentTerms: 'Due on Receipt', termsAndConditions: ''
             });
             fetchInvoices();
         } catch (error: any) {
@@ -203,6 +209,16 @@ export default function InvoicesPage() {
                                 />
                             </div>
                         </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Client Address</label>
+                            <textarea
+                                rows={2}
+                                value={formData.clientAddress}
+                                onChange={(e) => setFormData({ ...formData, clientAddress: e.target.value })}
+                                className="w-full border rounded-lg p-2"
+                                placeholder="123 Main St, City, State"
+                            />
+                        </div>
 
                         {/* Line Items */}
                         <div>
@@ -236,7 +252,7 @@ export default function InvoicesPage() {
                             </button>
                         </div>
 
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid grid-cols-4 gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Tax Rate %</label>
                                 <input
@@ -265,6 +281,43 @@ export default function InvoicesPage() {
                                     className="w-full border rounded-lg p-2"
                                 />
                             </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Payment Terms</label>
+                                <select
+                                    value={formData.paymentTerms}
+                                    onChange={(e) => setFormData({ ...formData, paymentTerms: e.target.value })}
+                                    className="w-full border rounded-lg p-2"
+                                >
+                                    <option>Due on Receipt</option>
+                                    <option>Net 7</option>
+                                    <option>Net 15</option>
+                                    <option>Net 30</option>
+                                    <option>Net 45</option>
+                                    <option>Net 60</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+                            <textarea
+                                rows={2}
+                                value={formData.notes}
+                                onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                                className="w-full border rounded-lg p-2"
+                                placeholder="Additional notes for the client"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Terms & Conditions</label>
+                            <textarea
+                                rows={3}
+                                value={formData.termsAndConditions}
+                                onChange={(e) => setFormData({ ...formData, termsAndConditions: e.target.value })}
+                                className="w-full border rounded-lg p-2"
+                                placeholder="Payment is due within the specified terms..."
+                            />
                         </div>
 
                         <div className="flex justify-end space-x-3">
@@ -299,7 +352,7 @@ export default function InvoicesPage() {
                                 <td className="px-6 py-4 text-sm text-gray-500">{new Date(inv.dueDate).toLocaleDateString()}</td>
                                 <td className="px-6 py-4">
                                     <span className={`px-2 py-1 text-xs rounded-full ${inv.status === 'Paid' ? 'bg-green-100 text-green-700' :
-                                        inv.status === 'Sent' ? 'bg-red-100 text-blue-700' :
+                                        inv.status === 'Sent' ? 'bg-blue-100 text-blue-700' :
                                             inv.status === 'Overdue' ? 'bg-red-100 text-red-700' :
                                                 'bg-gray-100 text-gray-700'
                                         }`}>{inv.status}</span>

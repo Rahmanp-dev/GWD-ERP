@@ -58,7 +58,7 @@ export async function POST(req: Request) {
         const { default: Invoice } = await import("@/lib/models/Invoice");
 
         const body = await req.json();
-        const { client, items, taxRate = 0, discount = 0, dueDate, notes, deal } = body;
+        const { client, items, taxRate = 0, discount = 0, dueDate, notes, deal, paymentTerms, termsAndConditions } = body;
 
         if (!client?.name || !items?.length || !dueDate) {
             return NextResponse.json({ error: "Client, items, and due date required" }, { status: 400 });
@@ -89,6 +89,8 @@ export async function POST(req: Request) {
             total,
             dueDate,
             notes,
+            paymentTerms,
+            termsAndConditions,
             createdBy: session.user?.id
         });
 

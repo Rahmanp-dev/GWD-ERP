@@ -38,6 +38,14 @@ const LeadSchema = new Schema({
     stageLocked: { type: Boolean, default: false }, // Prevent movement without override
     validationErrors: [{ type: String }], // Why it's stuck or marked invalid for stage move
 
+    // Automation & Focus
+    nextFollowUp: { type: Date }, // For "Today's Queue"
+    lossReason: { type: String }, // Required if Closed Lost
+    automationFlags: {
+        manualOverride: { type: Boolean, default: false }, // If true, skip auto-probability updates
+        autoTaskCreated: { type: Boolean, default: false }
+    },
+
     // Operations Handover
     handoverStatus: {
         type: String,

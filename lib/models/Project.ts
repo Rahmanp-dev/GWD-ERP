@@ -4,9 +4,12 @@ const ProjectSchema = new Schema({
     title: { type: String, required: true },
     description: { type: String },
 
-    // Team
+    // Team Structure
     manager: { type: Schema.Types.ObjectId, ref: 'User' },
-    members: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    internalTeam: [{ type: Schema.Types.ObjectId, ref: 'User' }], // Employees
+
+    // Freelancer Contracts (Execution Layer)
+    contracts: [{ type: Schema.Types.ObjectId, ref: 'Contract' }],
 
     // Client / Account Info
     client: { type: String },
@@ -24,11 +27,18 @@ const ProjectSchema = new Schema({
         default: 'Green'
     },
 
-    // Budget
+    // Budget & Financial Isolation (Level 1 vs Level 2)
     budget: {
-        estimated: { type: Number, default: 0 },
-        actual: { type: Number, default: 0 },
-        currency: { type: String, default: 'USD' }
+        currency: { type: String, default: 'USD' },
+
+        // Level 1: Execution (Visible to PM/Ops)
+        executionBudget: { type: Number, default: 0 }, // Max spend allowed for team/resources
+        actualSpend: { type: Number, default: 0 }, // Real-time burn
+
+        // Level 2: Financial Intelligence (Visible to CFO/CEO ONLY)
+        clientPrice: { type: Number, select: false }, // REVENUE - Hidden by default
+        opsOverhead: { type: Number, select: false }, // Internal tax/overhead
+        projectedMargin: { type: Number, select: false }, // (ClientPrice - ExecutionBudget - Overhead)
     },
 
     // Timeline

@@ -6,6 +6,11 @@ const TaskSchema = new Schema({
     project: { type: Schema.Types.ObjectId, ref: 'Project' }, // Optional for ad-hoc/general tasks
     assignee: { type: Schema.Types.ObjectId, ref: 'User' },
 
+    // KPI / Executive Checklist Fields
+    requester: { type: Schema.Types.ObjectId, ref: 'User' }, // For "Request Task" flow
+    approver: { type: Schema.Types.ObjectId, ref: 'User' }, // Executive who approved
+    linkedKPI: { type: Schema.Types.ObjectId, ref: 'KPI' }, // Contribution to a specific KPI
+
     status: {
         type: String,
         enum: ['To Do', 'In Progress', 'In Review', 'Blocked', 'Done'],

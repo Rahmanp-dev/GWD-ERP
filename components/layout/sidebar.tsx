@@ -18,7 +18,11 @@ import {
     FileText,
     Activity,
     Calendar,
-    Shield
+    Shield,
+    GraduationCap,
+    BookOpen,
+    CheckSquare,
+    Gauge
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 
@@ -26,15 +30,20 @@ import { signOut } from "next-auth/react";
 const roleNavConfigs: Record<string, any[]> = {
     ceo: [
         { href: "/dashboard", label: "Command Center", icon: LayoutDashboard },
+        { href: "/kpi", label: "KPI Board", icon: Gauge },
+        { href: "/my-tasks", label: "My Tasks", icon: CheckSquare },
         { href: "/calendar", label: "Calendar", icon: Calendar },
         { href: "/crm", label: "Sales", icon: Target },
         { href: "/projects", label: "Projects", icon: Briefcase },
         { href: "/finance", label: "Finance", icon: DollarSign },
+        { href: "/academy", label: "Academy", icon: GraduationCap },
         { href: "/hr", label: "HR", icon: UserCheck },
         { href: "/admin", label: "Admin", icon: Settings },
     ],
     cmo: [
         { href: "/dashboard", label: "Sales Overview", icon: LayoutDashboard },
+        { href: "/kpi", label: "KPI Board", icon: Gauge },
+        { href: "/my-tasks", label: "My Tasks", icon: CheckSquare },
         { href: "/crm", label: "Pipeline", icon: Target },
         { href: "/crm/manager", label: "Team", icon: Users },
         { href: "/finance/commissions", label: "Commissions", icon: Wallet },
@@ -66,6 +75,7 @@ const roleNavConfigs: Record<string, any[]> = {
         { href: "/operations/projects", label: "Projects & Health", icon: Briefcase },
         { href: "/operations/performance", label: "PM Performance", icon: Activity },
         { href: "/operations/resources", label: "Resources", icon: Users },
+        { href: "/ops/contracts", label: "Contracts", icon: FileText },
         { href: "/operations/governance", label: "Governance", icon: Shield },
     ],
     "operations manager": [
@@ -73,10 +83,13 @@ const roleNavConfigs: Record<string, any[]> = {
         { href: "/operations/projects", label: "Projects & Health", icon: Briefcase },
         { href: "/operations/performance", label: "PM Performance", icon: Activity },
         { href: "/operations/resources", label: "Resources", icon: Users },
+        { href: "/ops/contracts", label: "Contracts", icon: FileText },
         { href: "/operations/governance", label: "Governance", icon: Shield },
     ],
     cfo: [
         { href: "/dashboard", label: "Finance Dashboard", icon: LayoutDashboard },
+        { href: "/kpi", label: "KPI Board", icon: Gauge },
+        { href: "/my-tasks", label: "My Tasks", icon: CheckSquare },
         { href: "/finance", label: "Finance", icon: DollarSign },
         { href: "/finance/commissions", label: "Commissions", icon: Wallet },
         { href: "/finance/reports", label: "Reports", icon: BarChart3 },
@@ -84,16 +97,42 @@ const roleNavConfigs: Record<string, any[]> = {
     ],
     "hr manager": [
         { href: "/hr/dashboard", label: "HR Dashboard", icon: LayoutDashboard },
+        { href: "/hr/freelancers", label: "Talent Pool", icon: Briefcase },
         { href: "/hr/employees", label: "Employees", icon: Users },
         { href: "/hr/recruitment", label: "Recruitment", icon: Target },
         { href: "/hr/attendance", label: "Attendance", icon: Activity },
         { href: "/hr/performance", label: "Performance", icon: UserCheck },
+    ],
+    "academy head": [
+        { href: "/academy", label: "Academy HQ", icon: GraduationCap },
+        { href: "/academy/courses", label: "Courses", icon: BookOpen },
+        { href: "/academy/instructors", label: "Instructors", icon: Users },
+        { href: "/finance", label: "Financials", icon: DollarSign },
+        { href: "/hr", label: "HR", icon: UserCheck },
+    ],
+    "program director": [
+        { href: "/academy", label: "Academy HQ", icon: GraduationCap },
+        { href: "/academy/courses", label: "Courses", icon: BookOpen },
+        { href: "/academy/syllabus", label: "Syllabus", icon: FileText },
+        { href: "/academy/instructors", label: "Faculty", icon: Users },
+    ],
+    "academy ops manager": [
+        { href: "/academy", label: "Academy Ops", icon: GraduationCap },
+        { href: "/academy/batches", label: "Batches", icon: Calendar },
+        { href: "/academy/students", label: "Students", icon: Users },
+        { href: "/academy/instructors", label: "Faculty", icon: Users },
+    ],
+    "instructor": [
+        { href: "/academy/portal", label: "My Portal", icon: GraduationCap },
+        { href: "/academy/my-courses", label: "My Courses", icon: BookOpen },
+        { href: "/academy/my-batches", label: "My Batches", icon: Calendar },
     ],
     admin: [
         { href: "/dashboard", label: "Admin Dashboard", icon: LayoutDashboard },
         { href: "/calendar", label: "Calendar", icon: Calendar },
         { href: "/crm", label: "CRM", icon: Target },
         { href: "/projects", label: "Projects", icon: Briefcase },
+        { href: "/academy", label: "Academy", icon: GraduationCap },
         { href: "/hr", label: "HR", icon: UserCheck },
         { href: "/finance", label: "Finance", icon: DollarSign },
         { href: "/admin", label: "Admin", icon: Settings },

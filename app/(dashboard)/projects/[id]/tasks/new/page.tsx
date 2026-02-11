@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { getProjectAssignees } from "@/lib/actions/project";
 
 import { use } from "react";
 
@@ -11,6 +12,12 @@ export default function NewTaskPage(props: { params: Promise<{ id: string }> }) 
     const { id: projectId } = params;
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [assignees, setAssignees] = useState<any[]>([]);
+
+    useEffect(() => {
+        // Fetch valid assignees
+        getProjectAssignees(projectId).then(setAssignees).catch(console.error);
+    }, [projectId]);
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -59,8 +66,15 @@ export default function NewTaskPage(props: { params: Promise<{ id: string }> }) 
                     <textarea name="description" rows={3} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border p-2" />
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-gray-700">Assignee (Email)</label>
-                    <input name="assignee" type="email" placeholder="Optional" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border p-2" />
+                    <label className="block text-sm font-medium text-gray-700">Assignee</label>
+                    <select name="assignee" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border p-2">
+                        <option value="">Unassigned</option>
+                        {assignees.map((a) => (
+                            <option key={a.id} value={a.id}>
+                                {a.name} ({a.role})
+                            </option>
+                        ))}
+                    </select>
                 </div>
 
                 <div className="flex justify-end space-x-3 pt-4">

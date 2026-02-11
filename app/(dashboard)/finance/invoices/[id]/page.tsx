@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
+import { useState, useEffect, use, useTransition } from "react";
 import { Printer, Download, ArrowLeft, Mail, Check, Loader2 } from "lucide-react";
 import Link from "next/link";
+import { downloadInvoicePDF } from "@/lib/actions/finance";
+import InvoiceTermsEditor from "@/components/finance/invoice-terms-editor";
 
 export default function InvoiceViewPage({ params }: { params: Promise<{ id: string }> }) {
     const resolvedParams = use(params);
@@ -11,6 +13,7 @@ export default function InvoiceViewPage({ params }: { params: Promise<{ id: stri
     const [sending, setSending] = useState(false);
     const [emailSent, setEmailSent] = useState(false);
     const [emailError, setEmailError] = useState('');
+    const [isDownloading, startDownload] = useTransition();
 
     useEffect(() => {
         fetchInvoice();
@@ -30,6 +33,31 @@ export default function InvoiceViewPage({ params }: { params: Promise<{ id: stri
 
     const handlePrint = () => {
         window.print();
+    };
+
+    const handleDownload = () => {
+        startDownload(async () => {
+            try {
+                const { base64, filename } = await downloadInvoicePDF(resolvedParams.id);
+                const byteCharacters = atob(base64);
+                const byteNumbers = new Array(byteCharacters.length);
+                for (let i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                const byteArray = new Uint8Array(byteNumbers);
+                const blob = new Blob([byteArray], { type: "application/pdf" });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            } catch (error) {
+                console.error("Download failed", error);
+                alert("Failed to generate PDF. Please try again.");
+            }
+        });
     };
 
     const handleSendEmail = async () => {
@@ -135,11 +163,19 @@ export default function InvoiceViewPage({ params }: { params: Promise<{ id: stri
                         {sending ? 'Sending...' : 'Send to Client'}
                     </button>
                     <button
-                        onClick={handlePrint}
-                        className="flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+                        onClick={handleDownload}
+                        disabled={isDownloading}
+                        className="flex items-center px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 disabled:opacity-70"
                     >
-                        <Printer className="w-4 h-4 mr-2" />
-                        Print / Save PDF
+                        {isDownloading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Download className="w-4 h-4 mr-2" />}
+                        {isDownloading ? 'Generating...' : 'Download PDF'}
+                    </button>
+                    <button
+                        onClick={handlePrint}
+                        className="flex items-center px-3 py-2 border border-gray-300 bg-white text-gray-700 rounded-lg hover:bg-gray-50"
+                        title="Quick Print"
+                    >
+                        <Printer className="w-4 h-4" />
                     </button>
                 </div>
             </div>
@@ -242,17 +278,25 @@ export default function InvoiceViewPage({ params }: { params: Promise<{ id: stri
                     </div>
                 )}
 
-                {/* Bank Details */}
-                <div className="border-t pt-6">
-                    <h3 className="font-bold text-gray-800 mb-3">BANK DETAILS FOR PAYMENT:</h3>
-                    <ul className="text-sm text-gray-700 space-y-1">
-                        <li><span className="font-medium">BANK NAME:</span> STATE BANK OF INDIA</li>
-                        <li><span className="font-medium">ACCOUNT HOLDER NAME:</span> GET WORK DONE TECHNOLOGIES</li>
-                        <li><span className="font-medium">ACCOUNT NUMBER:</span> 37053009951</li>
-                        <li><span className="font-medium">IFSC CODE:</span> SBIN0020951</li>
-                        <li><span className="font-medium">MICR CODE:</span> 508002007</li>
-                        <li><span className="font-medium">BANK ADDRESS:</span> COLLECTORATE COMPLEX, NALGONDA</li>
-                    </ul>
+                {/* Footer / Terms */}
+                <div className="border-t border-gray-200 pt-8 print:border-none">
+                    <h4 className="font-bold text-gray-900 text-sm mb-2">Terms & Conditions</h4>
+
+                    {/* Interactive Editor - Hidden in Print mode (PDF generator uses DB value directly) */}
+                    <div className="print:hidden">
+                        <InvoiceTermsEditor invoiceId={invoice._id} initialTerms={invoice.termsAndConditions} />
+                    </div>
+
+                    {/* Static View for Print/Native Print only (though we encourage PDF download now) */}
+                    <div className="hidden print:block text-gray-500 text-xs leading-relaxed whitespace-pre-wrap">
+                        {invoice.termsAndConditions || 'Payment is due within the specified terms.'}
+                    </div>
+
+                    {invoice.paymentTerms && (
+                        <div className="mt-4 text-gray-500 text-xs">
+                            <strong>Payment Terms:</strong> {invoice.paymentTerms}
+                        </div>
+                    )}
                 </div>
 
                 {/* Footer */}

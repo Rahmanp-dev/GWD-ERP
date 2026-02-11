@@ -1,5 +1,6 @@
 import dbConnect from '@/lib/db';
 import User from '@/lib/models/User';
+import Candidate from '@/lib/models/Candidate';
 import { Users, UserMinus, UserPlus, AlertTriangle, Briefcase, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 
@@ -7,6 +8,8 @@ export const dynamic = 'force-dynamic';
 
 async function getHRStats() {
     await dbConnect();
+
+
 
     // 1. Headcount Stats
     const totalEmployees = await User.countDocuments({
@@ -27,8 +30,11 @@ async function getHRStats() {
         attritionRisk: 'High'
     });
 
-    // 4. Open Roles (Mock for now, would link to Job model)
-    const openRoles = 5;
+    // 4. Open Roles (Active Applications Distinct Count)
+    const activeRoles = await Candidate.distinct('roleApplied', {
+        status: { $nin: ['Hired', 'Rejected'] }
+    });
+    const openRoles = activeRoles.length;
 
     // 5. Onboarding Status
     const onboardingCount = await User.countDocuments({ employeeStatus: 'Onboarding' });
@@ -37,7 +43,7 @@ async function getHRStats() {
         totalEmployees,
         newJoiners,
         highRiskCount,
-        openRoles,
+        openRoles, // "Active Application Roles" as proxy
         onboardingCount
     };
 }

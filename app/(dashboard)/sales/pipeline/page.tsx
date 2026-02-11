@@ -112,9 +112,19 @@ export default async function PipelineGovernancePage({ searchParams }: { searchP
                                     </div>
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
-                                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStageColor(lead.status)}`}>
-                                        {lead.status}
-                                    </span>
+                                    <div className="flex items-center space-x-2">
+                                        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStageColor(lead.status)}`}>
+                                            {lead.status}
+                                        </span>
+                                        {lead.status !== 'Closed Won' && lead.status !== 'Closed Lost' && (
+                                            <Link
+                                                href={`/sales/pipeline/${lead._id}/convert`}
+                                                className="text-xs bg-green-50 text-green-700 border border-green-200 hover:bg-green-100 px-2 py-1 rounded transition-colors flex items-center"
+                                            >
+                                                Win & Convert
+                                            </Link>
+                                        )}
+                                    </div>
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                     ${lead.value?.toLocaleString() || 0}

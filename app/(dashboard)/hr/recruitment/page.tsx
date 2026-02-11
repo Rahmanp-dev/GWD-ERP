@@ -1,18 +1,21 @@
-import CandidateBoard from "@/components/hr/candidate-board";
-import Link from "next/link";
+import { getCandidates } from "@/lib/actions/hr";
+import RecruitmentBoard from "@/components/hr/recruitment-board";
+import { Plus } from "lucide-react";
 
-export default function RecruitmentPage() {
+export default async function RecruitmentPage() {
+    const candidates = await getCandidates();
+
     return (
-        <div className="h-full flex flex-col">
-            <div className="flex justify-between items-center mb-6">
-                <h1 className="text-2xl font-bold text-gray-900">Recruitment Pipeline</h1>
-                <Link href="/hr/recruitment/new" className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700">
-                    Add Candidate
-                </Link>
+        <div className="h-[calc(100vh-100px)] flex flex-col">
+            <div className="flex justify-between items-center mb-6 px-1">
+                <div>
+                    <h1 className="text-2xl font-bold text-gray-900">Recruitment Pipeline</h1>
+                    <p className="text-sm text-gray-500">Manage candidates and hiring process</p>
+                </div>
+                {/* Board Component will handle the 'Add' modal internally or we pass a trigger here */}
             </div>
-            <div className="flex-1 overflow-hidden">
-                <CandidateBoard />
-            </div>
+
+            <RecruitmentBoard initialCandidates={candidates} />
         </div>
     );
 }

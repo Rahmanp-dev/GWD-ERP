@@ -63,8 +63,13 @@ export default function CEODashboard() {
                     <h1 className="text-2xl font-bold text-gray-900">CEO Command Center</h1>
                     <p className="text-sm text-gray-500">Strategic oversight • Where should I intervene?</p>
                 </div>
-                <div className="text-sm text-gray-500">
-                    {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                <div className="flex items-center space-x-3">
+                    <a href="/kpi" className="px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition shadow-sm">
+                        KPI Board &rarr;
+                    </a>
+                    <div className="text-sm text-gray-500">
+                        {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                    </div>
                 </div>
             </div>
 

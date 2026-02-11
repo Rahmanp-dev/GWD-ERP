@@ -7,7 +7,7 @@ const UserSchema = new Schema({
     image: { type: String },
     role: {
         type: String,
-        enum: ['CEO', 'CMO', 'CFO', 'Ops', 'HR Manager', 'Sales Manager', 'Salesperson', 'Project Manager', 'User'],
+        enum: ['CEO', 'CMO', 'CFO', 'Ops', 'HR Manager', 'Sales Manager', 'Salesperson', 'Project Manager', 'User', 'Academy Head', 'Program Director', 'Academy Ops Manager', 'Instructor'],
         default: 'User'
     },
     createdAt: { type: Date, default: Date.now },

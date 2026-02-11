@@ -9,6 +9,7 @@ export default function HRLayout({ children }: { children: React.ReactNode }) {
                 <div className="flex space-x-1 overflow-x-auto">
                     <NavLink href="/hr/dashboard" icon={LayoutDashboard} label="People Control" />
                     <NavLink href="/hr/employees" icon={Users} label="Directory" />
+                    <NavLink href="/hr/freelancers" icon={Briefcase} label="Freelancers" />
                     <NavLink href="/hr/recruitment" icon={Briefcase} label="Recruitment" />
                     <NavLink href="/hr/attendance" icon={Calendar} label="Attendance" />
                     <NavLink href="/hr/performance" icon={UserCheck} label="Performance" />

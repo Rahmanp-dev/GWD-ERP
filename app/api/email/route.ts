@@ -26,8 +26,17 @@ export async function POST(req: Request) {
                 const invoiceTemplate = EmailTemplates.invoice({
                     invoiceNumber: data.invoiceNumber,
                     clientName: data.clientName,
+                    clientEmail: data.clientEmail,
+                    clientAddress: data.clientAddress,
                     total: data.total,
+                    subtotal: data.subtotal,
+                    tax: data.tax,
+                    taxRate: data.taxRate,
+                    discount: data.discount,
                     dueDate: data.dueDate,
+                    items: data.items,
+                    notes: data.notes,
+                    paymentTerms: data.paymentTerms,
                     viewUrl: data.viewUrl
                 });
                 emailConfig = {

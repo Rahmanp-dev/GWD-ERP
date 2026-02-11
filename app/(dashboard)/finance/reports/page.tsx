@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { getSalesAnalytics, getCommissionAnalytics } from "@/lib/actions/reports";
 import {
     BarChart3,
     PieChart,
@@ -50,24 +51,18 @@ export default function ReportsBuilder() {
     const fetchReportData = async () => {
         setLoading(true);
         try {
-            // Fetch appropriate data based on report type
-            let endpoint = "";
-            switch (reportType) {
-                case "sales":
-                    endpoint = "/api/crm/analytics/dashboard";
-                    break;
-                case "finance":
-                    endpoint = "/api/finance/commissions";
-                    break;
-                default:
-                    endpoint = "/api/crm/analytics/dashboard";
+            let result;
+            if (reportType === "sales") {
+                result = await getSalesAnalytics();
+            } else if (reportType === "finance") {
+                result = await getCommissionAnalytics();
+            } else {
+                // Fallback or Projects (not implemented yet)
+                result = await getSalesAnalytics(); // Defaulting to sales for now
             }
-
-            const res = await fetch(endpoint);
-            const result = await res.json();
             setData(result);
         } catch (error) {
-            console.error(error);
+            console.error("Failed to load report data:", error);
         } finally {
             setLoading(false);
         }

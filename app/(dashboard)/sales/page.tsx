@@ -111,8 +111,13 @@ export default async function SalesDashboardPage() {
                     <h1 className="text-2xl font-bold text-gray-900">Sales Control Tower</h1>
                     <p className="text-gray-500">Real-time revenue intelligence and pipeline governance.</p>
                 </div>
-                <div className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
-                    Period: This Quarter
+                <div className="flex items-center space-x-3">
+                    <a href="/kpi" className="px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700 transition shadow-sm">
+                        Exec KPIs
+                    </a>
+                    <div className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                        Period: This Quarter
+                    </div>
                 </div>
             </div>
 
