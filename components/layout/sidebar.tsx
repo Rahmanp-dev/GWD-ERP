@@ -38,6 +38,7 @@ const roleNavConfigs: Record<string, any[]> = {
         { href: "/finance", label: "Finance", icon: DollarSign },
         { href: "/academy", label: "Academy", icon: GraduationCap },
         { href: "/hr", label: "HR", icon: UserCheck },
+        { href: "/admin/daily-reports", label: "Daily Reports", icon: FileText },
         { href: "/admin", label: "Admin", icon: Settings },
     ],
     cmo: [
@@ -53,6 +54,15 @@ const roleNavConfigs: Record<string, any[]> = {
         { href: "/crm", label: "Pipeline", icon: Target },
         { href: "/crm/manager", label: "Team View", icon: Users },
         { href: "/crm/dashboard", label: "Analytics", icon: BarChart3 },
+    ],
+    "head of sales": [
+        { href: "/dashboard", label: "Team Dashboard", icon: LayoutDashboard },
+        { href: "/kpi", label: "KPI Board", icon: Gauge },
+        { href: "/my-tasks", label: "My Tasks", icon: CheckSquare },
+        { href: "/crm", label: "Pipeline", icon: Target },
+        { href: "/crm/manager", label: "Team View", icon: Users },
+        { href: "/crm/dashboard", label: "Analytics", icon: BarChart3 },
+        { href: "/finance/commissions", label: "Incentives", icon: Wallet },
     ],
     salesperson: [
         { href: "/dashboard", label: "My Dashboard", icon: LayoutDashboard },
@@ -105,6 +115,8 @@ const roleNavConfigs: Record<string, any[]> = {
     ],
     "academy head": [
         { href: "/academy", label: "Academy HQ", icon: GraduationCap },
+        { href: "/kpi", label: "KPI Board", icon: Gauge },
+        { href: "/my-tasks", label: "My Tasks", icon: CheckSquare },
         { href: "/academy/courses", label: "Courses", icon: BookOpen },
         { href: "/academy/instructors", label: "Instructors", icon: Users },
         { href: "/finance", label: "Financials", icon: DollarSign },
@@ -135,6 +147,7 @@ const roleNavConfigs: Record<string, any[]> = {
         { href: "/academy", label: "Academy", icon: GraduationCap },
         { href: "/hr", label: "HR", icon: UserCheck },
         { href: "/finance", label: "Finance", icon: DollarSign },
+        { href: "/admin/daily-reports", label: "System Reports", icon: FileText },
         { href: "/admin", label: "Admin", icon: Settings },
     ],
 };
