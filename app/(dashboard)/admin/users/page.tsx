@@ -10,7 +10,7 @@ interface User {
     role: string;
 }
 
-const ROLES = ['CEO', 'CMO', 'CFO', 'Ops', 'HR Manager', 'Sales Manager', 'Salesperson', 'Project Manager', 'User', 'Admin', 'Academy Head', 'Program Director', 'Academy Ops Manager', 'Instructor'];
+const ROLES = ['CEO', 'CMO', 'CFO', 'Ops', 'HR Manager', 'Sales Manager', 'Head of Sales', 'Salesperson', 'Project Manager', 'User', 'Admin', 'Academy Head', 'Program Director', 'Academy Ops Manager', 'Instructor', 'Content Strategist', 'Production Lead'];
 
 export default function UsersPage() {
     const [users, setUsers] = useState<User[]>([]);

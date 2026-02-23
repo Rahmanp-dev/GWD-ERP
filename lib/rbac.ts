@@ -21,7 +21,12 @@ export type Permission =
     // Admin
     | 'admin:users' | 'admin:roles' | 'admin:audit' | 'admin:settings' | 'admin:automations'
     // Reports
-    | 'reports:read' | 'reports:create' | 'reports:export';
+    | 'reports:read' | 'reports:create' | 'reports:export'
+    // PRP / Content
+    | 'content:create' | 'content:edit' | 'content:request_review'
+    | 'content:approve_level_1' | 'content:approve_level_2'
+    | 'content:publish' | 'content:override_unpublish'
+    | 'production:asset_approve' | 'approval:delegate';
 
 // Role definitions with their permissions
 export const ROLE_PERMISSIONS: Record<string, Permission[]> = {
@@ -34,7 +39,11 @@ export const ROLE_PERMISSIONS: Record<string, Permission[]> = {
         'commissions:read', 'commissions:create', 'commissions:approve', 'commissions:pay',
         'hr:read', 'hr:create', 'hr:update', 'hr:delete',
         'admin:users', 'admin:roles', 'admin:audit', 'admin:settings', 'admin:automations',
-        'reports:read', 'reports:create', 'reports:export'
+        'reports:read', 'reports:create', 'reports:export',
+        'content:create', 'content:edit', 'content:request_review',
+        'content:approve_level_1', 'content:approve_level_2',
+        'content:publish', 'content:override_unpublish',
+        'production:asset_approve', 'approval:delegate'
     ],
 
     'Admin': [
@@ -45,7 +54,11 @@ export const ROLE_PERMISSIONS: Record<string, Permission[]> = {
         'commissions:read', 'commissions:create', 'commissions:approve', 'commissions:pay',
         'hr:read', 'hr:create', 'hr:update', 'hr:delete',
         'admin:users', 'admin:roles', 'admin:audit', 'admin:settings', 'admin:automations',
-        'reports:read', 'reports:create', 'reports:export'
+        'reports:read', 'reports:create', 'reports:export',
+        'content:create', 'content:edit', 'content:request_review',
+        'content:approve_level_1', 'content:approve_level_2',
+        'content:publish', 'content:override_unpublish',
+        'production:asset_approve', 'approval:delegate'
     ],
 
     'Sales Manager': [
@@ -96,6 +109,15 @@ export const ROLE_PERMISSIONS: Record<string, Permission[]> = {
     'Employee': [
         'tasks:read', 'tasks:update', // Own tasks only
         'hr:read' // Own profile only
+    ],
+
+    'Content Strategist': [
+        'content:create', 'content:edit', 'content:request_review',
+        'content:approve_level_1', 'content:publish', 'production:asset_approve'
+    ],
+
+    'Production Lead': [
+        'content:create', 'content:edit', 'production:asset_approve', 'content:approve_level_1'
     ]
 };
 

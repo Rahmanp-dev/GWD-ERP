@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { updateInvoiceTerms } from "@/lib/actions/finance";
 import { Edit2, Save, X, Loader2 } from "lucide-react";
+import RichTextEditor from "@/components/ui/rich-text-editor";
 
 export default function InvoiceTermsEditor({ invoiceId, initialTerms }: { invoiceId: string, initialTerms: string }) {
     const [isEditing, setIsEditing] = useState(false);
@@ -39,22 +40,24 @@ export default function InvoiceTermsEditor({ invoiceId, initialTerms }: { invoic
                         </button>
                     </div>
                 </div>
-                <textarea
-                    className="w-full h-32 p-3 text-sm border rounded focus:ring-2 focus:ring-blue-500 outline-none"
-                    value={terms}
-                    onChange={(e) => setTerms(e.target.value)}
+
+                <RichTextEditor
+                    content={terms}
+                    onChange={setTerms}
                     placeholder="Enter terms and conditions..."
                 />
-                <p className="text-xs text-gray-500 mt-2">Supports basic text. Will appear on the PDF.</p>
+
+                <p className="text-xs text-gray-500 mt-2">Supports rich text framing. Will appear on the PDF.</p>
             </div>
         );
     }
 
     return (
         <div className="relative group">
-            <div className="text-gray-500 text-xs leading-relaxed whitespace-pre-wrap pr-8">
-                {terms || 'Payment is due within the specified terms. Please include the invoice number on your payment.'}
-            </div>
+            <div
+                className="text-gray-500 text-xs leading-relaxed whitespace-pre-wrap pr-8 prose prose-sm max-w-none prose-p:my-1 prose-ul:my-1 prose-li:my-0"
+                dangerouslySetInnerHTML={{ __html: terms || 'Payment is due within the specified terms. Please include the invoice number on your payment.' }}
+            />
             <button
                 onClick={() => setIsEditing(true)}
                 className="absolute top-0 right-0 p-1 text-gray-400 hover:text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity"

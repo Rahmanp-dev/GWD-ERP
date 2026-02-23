@@ -141,6 +141,20 @@ export default async function PublicInvoicePage({ params }: { params: Promise<{ 
                         </ul>
                     </div>
 
+                    {/* Terms & Conditions */}
+                    <div className="border-t pt-6 mt-8">
+                        <h3 className="font-bold text-gray-800 mb-3 uppercase tracking-wider text-sm">Terms & Conditions</h3>
+                        <div
+                            className="prose prose-sm prose-gray max-w-none prose-p:my-1 prose-ul:my-1 prose-li:my-0 text-gray-700 leading-relaxed"
+                            dangerouslySetInnerHTML={{ __html: invoice.termsAndConditions || 'Payment is due within the specified terms. Please include the invoice number on your payment.' }}
+                        />
+                        {invoice.paymentTerms && (
+                            <div className="mt-4 text-gray-800 text-sm font-semibold">
+                                Payment Terms: {invoice.paymentTerms}
+                            </div>
+                        )}
+                    </div>
+
                     {/* Footer */}
                     <div className="mt-12 pt-6 border-t text-center">
                         <div className="text-sm text-gray-500">

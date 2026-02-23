@@ -22,7 +22,7 @@ export async function generateInvoicePDF(invoice: any) {
     <html>
     <head>
         <meta charset="UTF-8">
-        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
             body { font-family: 'Inter', sans-serif; }
@@ -98,18 +98,20 @@ export async function generateInvoicePDF(invoice: any) {
         </div>
 
         <!-- Footer / Terms -->
-        <div class="border-t border-gray-200 pt-8">
+        <div class="border-t border-gray-200 pt-8 mt-auto">
             <h4 class="font-bold text-gray-900 text-sm mb-2">Terms & Conditions</h4>
-            <div class="text-gray-500 text-xs leading-relaxed">
+            <div class="text-gray-500 text-xs leading-relaxed prose prose-sm max-w-none prose-p:my-1 prose-ul:my-1 prose-li:my-0 prose-gray">
                 ${invoice.termsAndConditions || 'Payment is due within the specified terms. Please include the invoice number on your payment.'}
-                <br><br>
-                Thank you for your business.
             </div>
             
             ${invoice.paymentTerms ? `
-            <div class="mt-4 text-gray-500 text-xs">
-                 <strong>Payment Terms:</strong> ${invoice.paymentTerms}
+            <div class="mt-4 text-gray-500 text-xs font-semibold">
+                 Payment Terms: ${invoice.paymentTerms}
             </div>` : ''}
+            
+            <div class="mt-6 text-gray-400 text-xs text-center">
+                Thank you for your business.
+            </div>
         </div>
 
     </body>

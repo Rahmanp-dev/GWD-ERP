@@ -27,6 +27,8 @@ export default async function DashboardPage() {
         redirect('/operations');
     } else if (['admin'].includes(role)) {
         redirect('/dashboard/admin');
+    } else if (['content strategist', 'editor', 'production lead'].includes(role)) {
+        redirect('/content');
     }
 
     // Default: Show generic welcome page

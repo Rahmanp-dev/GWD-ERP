@@ -22,7 +22,8 @@ import {
     GraduationCap,
     BookOpen,
     CheckSquare,
-    Gauge
+    Gauge,
+    Megaphone
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 
@@ -38,6 +39,7 @@ const roleNavConfigs: Record<string, any[]> = {
         { href: "/finance", label: "Finance", icon: DollarSign },
         { href: "/academy", label: "Academy", icon: GraduationCap },
         { href: "/hr", label: "HR", icon: UserCheck },
+        { href: "/content", label: "Content Approvals", icon: Megaphone },
         { href: "/admin/daily-reports", label: "Daily Reports", icon: FileText },
         { href: "/admin", label: "Admin", icon: Settings },
     ],
@@ -48,6 +50,7 @@ const roleNavConfigs: Record<string, any[]> = {
         { href: "/crm", label: "Pipeline", icon: Target },
         { href: "/crm/manager", label: "Team", icon: Users },
         { href: "/finance/commissions", label: "Commissions", icon: Wallet },
+        { href: "/requests/content", label: "Request Content", icon: Megaphone },
     ],
     "sales manager": [
         { href: "/dashboard", label: "Team Dashboard", icon: LayoutDashboard },
@@ -63,6 +66,7 @@ const roleNavConfigs: Record<string, any[]> = {
         { href: "/crm/manager", label: "Team View", icon: Users },
         { href: "/crm/dashboard", label: "Analytics", icon: BarChart3 },
         { href: "/finance/commissions", label: "Incentives", icon: Wallet },
+        { href: "/requests/content", label: "Request Content", icon: Megaphone },
     ],
     salesperson: [
         { href: "/dashboard", label: "My Dashboard", icon: LayoutDashboard },
@@ -112,6 +116,7 @@ const roleNavConfigs: Record<string, any[]> = {
         { href: "/hr/recruitment", label: "Recruitment", icon: Target },
         { href: "/hr/attendance", label: "Attendance", icon: Activity },
         { href: "/hr/performance", label: "Performance", icon: UserCheck },
+        { href: "/requests/content", label: "Request Content", icon: Megaphone },
     ],
     "academy head": [
         { href: "/academy", label: "Academy HQ", icon: GraduationCap },
@@ -121,12 +126,14 @@ const roleNavConfigs: Record<string, any[]> = {
         { href: "/academy/instructors", label: "Instructors", icon: Users },
         { href: "/finance", label: "Financials", icon: DollarSign },
         { href: "/hr", label: "HR", icon: UserCheck },
+        { href: "/requests/content", label: "Request Content", icon: Megaphone },
     ],
     "program director": [
         { href: "/academy", label: "Academy HQ", icon: GraduationCap },
         { href: "/academy/courses", label: "Courses", icon: BookOpen },
         { href: "/academy/syllabus", label: "Syllabus", icon: FileText },
         { href: "/academy/instructors", label: "Faculty", icon: Users },
+        { href: "/requests/content", label: "Request Content", icon: Megaphone },
     ],
     "academy ops manager": [
         { href: "/academy", label: "Academy Ops", icon: GraduationCap },
@@ -139,6 +146,24 @@ const roleNavConfigs: Record<string, any[]> = {
         { href: "/academy/my-courses", label: "My Courses", icon: BookOpen },
         { href: "/academy/my-batches", label: "My Batches", icon: Calendar },
     ],
+    "content strategist": [
+        { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
+        { href: "/content", label: "Content Queue", icon: Megaphone },
+        { href: "/calendar", label: "Calendar", icon: Calendar },
+        { href: "/kpi", label: "My KPIs", icon: Gauge },
+        { href: "/my-tasks", label: "Tasks", icon: CheckSquare },
+    ],
+    "production lead": [
+        { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
+        { href: "/content", label: "Production Queue", icon: Megaphone },
+        { href: "/projects", label: "Projects", icon: Briefcase },
+        { href: "/kpi", label: "My KPIs", icon: Gauge },
+        { href: "/my-tasks", label: "Tasks", icon: CheckSquare },
+    ],
+    editor: [
+        { href: "/content", label: "My Tasks", icon: Megaphone },
+        { href: "/calendar", label: "Content Calendar", icon: Calendar },
+    ],
     admin: [
         { href: "/dashboard", label: "Admin Dashboard", icon: LayoutDashboard },
         { href: "/calendar", label: "Calendar", icon: Calendar },
@@ -147,6 +172,7 @@ const roleNavConfigs: Record<string, any[]> = {
         { href: "/academy", label: "Academy", icon: GraduationCap },
         { href: "/hr", label: "HR", icon: UserCheck },
         { href: "/finance", label: "Finance", icon: DollarSign },
+        { href: "/content", label: "Content Approvals", icon: Megaphone },
         { href: "/admin/daily-reports", label: "System Reports", icon: FileText },
         { href: "/admin", label: "Admin", icon: Settings },
     ],

@@ -11,6 +11,7 @@ import {
     Send,
     Eye
 } from "lucide-react";
+import RichTextEditor from "@/components/ui/rich-text-editor";
 
 export default function InvoicesPage() {
     const [invoices, setInvoices] = useState<any[]>([]);
@@ -311,11 +312,9 @@ export default function InvoicesPage() {
 
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">Terms & Conditions</label>
-                            <textarea
-                                rows={3}
-                                value={formData.termsAndConditions}
-                                onChange={(e) => setFormData({ ...formData, termsAndConditions: e.target.value })}
-                                className="w-full border rounded-lg p-2"
+                            <RichTextEditor
+                                content={formData.termsAndConditions}
+                                onChange={(html) => setFormData({ ...formData, termsAndConditions: html })}
                                 placeholder="Payment is due within the specified terms..."
                             />
                         </div>

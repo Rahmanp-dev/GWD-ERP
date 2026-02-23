@@ -7,9 +7,10 @@ const UserSchema = new Schema({
     image: { type: String },
     role: {
         type: String,
-        enum: ['CEO', 'CMO', 'CFO', 'Ops', 'HR Manager', 'Sales Manager', 'Head of Sales', 'Salesperson', 'Project Manager', 'User', 'Academy Head', 'Program Director', 'Academy Ops Manager', 'Instructor'],
+        enum: ['CEO', 'CMO', 'CFO', 'Ops', 'HR Manager', 'Sales Manager', 'Head of Sales', 'Salesperson', 'Project Manager', 'User', 'Academy Head', 'Program Director', 'Academy Ops Manager', 'Instructor', 'Content Strategist', 'Production Lead', 'Editor', 'Admin'],
         default: 'User'
     },
+    permissions: [{ type: String }], // Granular permission overrides
     createdAt: { type: Date, default: Date.now },
 
     // HR & Talent Management

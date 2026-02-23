@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const ROLES = ['Showroom Manage', 'CEO', 'CMO', 'CFO', 'Ops', 'HR Manager', 'Sales Manager', 'Salesperson', 'Project Manager', 'User', 'Admin', 'Academy Head', 'Program Director', 'Academy Ops Manager', 'Instructor'];
+const ROLES = ['Showroom Manage', 'CEO', 'CMO', 'CFO', 'Ops', 'HR Manager', 'Sales Manager', 'Head of Sales', 'Salesperson', 'Project Manager', 'User', 'Admin', 'Academy Head', 'Program Director', 'Academy Ops Manager', 'Instructor', 'Content Strategist', 'Production Lead', 'Editor'];
 
 export default function NewUserPage() {
     const router = useRouter();
